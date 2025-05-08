@@ -15,7 +15,7 @@ function App() {
     });
 
     const data = await response.json();
-    setFerryInfo(data.response[0]);
+    setFerryInfo(data.response);
 
     console.log(data)
   }
@@ -36,11 +36,17 @@ function App() {
       </div>
 
       <div>
-        <h2>Vessel Name: {ferryInfo.vessel || 'N/A'}</h2>
-        <p>Call Sign: {ferryInfo.callsign || 'N/A'}</p>
-        <p>Operator Name: {ferryInfo.operator || 'N/A'}</p>
-        <p>Longitude: {ferryInfo.lng || 'N/A'}</p>
-        <p>Latitude: {ferryInfo.lat || 'N/A'}</p>
+        <ul>
+          {ferryInfo.map((ferryInfo, index) => (
+            <li key={index}>
+              <p>Vessel Name: {ferryInfo.vessel || 'N/A'}</p>
+              <p>Call Sign: {ferryInfo.callsign || 'N/A'}</p>
+              <p>Operator Name: {ferryInfo.operator || 'N/A'}</p>
+              <p>Longitude: {ferryInfo.lng || 'N/A'}</p>
+              <p>Latitude: {ferryInfo.lat || 'N/A'}</p>
+            </li>
+          ))}
+        </ul>
       </div>
     </>
   )
